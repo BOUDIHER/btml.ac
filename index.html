@@ -65,3 +65,43 @@
   <script src="script.js"></script>
 </body>
 </html>
+<script>
+  // إرسال نص للترجمة
+  async function translateText() {
+    const text = prompt("أدخل النص للترجمة:");
+    const response = await fetch('http://localhost:5000/translate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text: text, targetLanguage: 'ber' }) // 'ber' هي رمز اللغة الأمازيغية
+    });
+
+    const data = await response.json();
+    alert(`النص المترجم: ${data.translatedText}`);
+  }
+
+  // إرسال فعل للتصريف
+  async function conjugateVerb() {
+    const verb = prompt("أدخل الفعل للتصريف:");
+    const response = await fetch('http://localhost:5000/conjugate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ verb: verb })
+    });
+
+    const data = await response.json();
+    alert(`التصريفات: ${JSON.stringify(data.conjugations)}`);
+  }
+
+  // إرسال نص للتصحيح
+  async function correctText() {
+    const text = prompt("أدخل النص للتصحيح:");
+    const response = await fetch('http://localhost:5000/correct', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text: text })
+    });
+
+    const data = await response.json();
+    alert(`النص المصحح: ${data.correctedText}`);
+  }
+</script>
