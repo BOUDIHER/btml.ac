@@ -11,7 +11,7 @@
 
                 let output = '<h2>إصدارات الترجمة:</h2>';
                 data.versions.forEach(version => {
-                    output += <p>الإصدار: ${version.version_id} - تاريخ الإنشاء: ${version.created_at}</p>;
+                    output += `<p>الإصدار: ${version.version_id} - تاريخ الإنشاء: ${version.created_at}</p>`;
                 });
 
                 document.getElementById("translations").innerHTML = output;
@@ -27,3 +27,21 @@
 </body>
 </html>
 
+
+                let output = '<h2>إصدارات الترجمة:</h2>';
+                data.versions.forEach(version => {
+                    output += <p>الإصدار: ${version.version_id} - تاريخ الإنشاء: ${version.created_at}</p>;
+                });
+
+                document.getElementById("translations").innerHTML = output;
+            } catch (error) {
+                console.error("خطأ في جلب الترجمة:", error);
+            }
+        }
+    </script>
+</head>
+<body onload="fetchTranslation()">
+    <h1>مرحبًا بك في موقع الترجمة</h1>
+    <div id="translations">جاري تحميل الترجمة...</div>
+</body>
+</html>
