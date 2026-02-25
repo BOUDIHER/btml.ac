@@ -26,4 +26,3 @@
     <div id="translations">جاري تحميل الترجمة...</div>
 </body>
 </html>
-

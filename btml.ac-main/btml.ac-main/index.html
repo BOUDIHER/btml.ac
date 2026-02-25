@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BTML | أدوات اللغة الأمازيغية</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- الجزء العلوي للموقع -->
+  <header>
+    <div>BTML | أدوات اللغة الأمازيغية</div>
+    <nav>
+      <a href="#">الرئيسية</a>
+      <a href="#">ترجمة النصوص</a>
+      <a href="#">تعلم الأمازيغية</a>
+      <a href="#">تصريف الأفعال</a>
+      <a href="#">ترجمة PDF</a>
+      <a href="#">تصحيح الأخطاء</a>
+    </nav>
+  </header>
+
+  <!-- قسم المقدمة -->
+  <section class="hero">
+    <h1>أدوات اللغة الأمازيغية</h1>
+    <p>ترجمة النصوص، تعلم اللغة، تصريف الأفعال، وتصحيح الأخطاء بكل سهولة.</p>
+  </section>
+
+  <!-- الأدوات -->
+  <section class="tools">
+    <div class="tool">
+      <h3>ترجمة النصوص</h3>
+      <p>ترجم النصوص من أي لغة إلى الأمازيغية بسهولة ودقة.</p>
+      <a href="#">ابدأ الآن</a>
+    </div>
+    <div class="tool">
+      <h3>تعلم الأمازيغية</h3>
+      <p>تعلم قواعد اللغة الأمازيغية بأسلوب ميسر وممتع.</p>
+      <a href="#">ابدأ الآن</a>
+    </div>
+    <div class="tool">
+      <h3>تصريف الأفعال</h3>
+      <p>احصل على تصريف الأفعال الأمازيغية في جميع الأزمنة.</p>
+      <a href="#">ابدأ الآن</a>
+    </div>
+    <div class="tool">
+      <h3>ترجمة ملفات PDF</h3>
+      <p>قم بترجمة ملفات PDF إلى اللغة الأمازيغية بسرعة وسهولة.</p>
+      <a href="#">ابدأ الآن</a>
+    </div>
+    <div class="tool">
+      <h3>تصحيح الأخطاء</h3>
+      <p>صحح النصوص الأمازيغية من الأخطاء الإملائية والنحوية.</p>
+      <a href="#">ابدأ الآن</a>
+    </div>
+  </section>
+
+  <!-- الجزء السفلي للموقع -->
+  <footer>
+    <p>&copy; 2025 BTML | جميع الحقوق محفوظة. <a href="#">سياسة الخصوصية</a> | <a href="#">الشروط والأحكام</a></p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+<script>
+  // إرسال نص للترجمة
+  async function translateText() {
+    const text = prompt("أدخل النص للترجمة:");
+    const response = await fetch('http://localhost:5000/translate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text: text, targetLanguage: 'ber' }) // 'ber' هي رمز اللغة الأمازيغية
+    });
+
+    const data = await response.json();
+    alert(`النص المترجم: ${data.translatedText}`);
+  }
+
+  // إرسال فعل للتصريف
+  async function conjugateVerb() {
+    const verb = prompt("أدخل الفعل للتصريف:");
+    const response = await fetch('http://localhost:5000/conjugate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ verb: verb })
+    });
+
+    const data = await response.json();
+    alert(`التصريفات: ${JSON.stringify(data.conjugations)}`);
+  }
+
+  // إرسال نص للتصحيح
+  async function correctText() {
+    const text = prompt("أدخل النص للتصحيح:");
+    const response = await fetch('http://localhost:5000/correct', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text: text })
+    });
+
+    const data = await response.json();
+    alert(`النص المصحح: ${data.correctedText}`);
+  }
+</script>
